@@ -145,6 +145,42 @@ The API will be available at:
 python test_api.py
 ```
 
+## 🖥️ Streamlit Web Interface
+
+In addition to the REST API, a user-friendly web interface is available via Streamlit for interactive querying.
+
+### Start the Streamlit UI
+
+```bash
+streamlit run streamlit_ui.py
+```
+
+The web interface will be available at: `http://localhost:8501`
+
+### Features
+
+- **Interactive Interface**: Easy-to-use web form for asking questions
+- **Real-time Configuration**: Adjust settings without restarting:
+  - Enable/disable re-ranking
+  - Control hybrid search weight (0.0 to 1.0)
+  - Select LLM model (gpt-3.5-turbo, gpt-4, o4-mini)
+- **Rich Results Display**: 
+  - Formatted answers with markdown support
+  - Reference sections with page numbers
+  - Source document information
+- **Error Handling**: Clear error messages for API issues
+
+### Usage
+
+1. Start the FastAPI backend server (see [Quick Start](#-quick-start))
+2. In a new terminal, launch the Streamlit interface:
+   ```bash
+   streamlit run streamlit_ui.py
+   ```
+3. Open your browser to `http://localhost:8501`
+4. Enter your building code question and adjust settings as needed
+5. Click "Submit" to get AI-powered answers with references
+
 ## 📚 API Endpoints
 
 ### 🔍 Health Check
