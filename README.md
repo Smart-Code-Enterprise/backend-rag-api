@@ -70,22 +70,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Quick Setup (Recommended)
-
-Run the automated setup script:
-
-```bash
-python setup.py
-```
-
-This will:
-- Check system requirements
-- Install dependencies
-- Create `.env` file
-- Create the vector database
-- Provide next steps
-
-### 5. Manual Setup
 
 #### Environment Configuration
 
@@ -139,11 +123,6 @@ The API will be available at:
 - **Interactive Docs**: http://localhost:8000/docs
 - **Alternative Docs**: http://localhost:8000/redoc
 
-### Test the API
-
-```bash
-python test_api.py
-```
 
 ## 🖥️ Streamlit Web Interface
 
@@ -156,19 +135,6 @@ streamlit run streamlit_ui.py
 ```
 
 The web interface will be available at: `http://localhost:8501`
-
-### Features
-
-- **Interactive Interface**: Easy-to-use web form for asking questions
-- **Real-time Configuration**: Adjust settings without restarting:
-  - Enable/disable re-ranking
-  - Control hybrid search weight (0.0 to 1.0)
-  - Select LLM model (gpt-3.5-turbo, gpt-4, o4-mini)
-- **Rich Results Display**: 
-  - Formatted answers with markdown support
-  - Reference sections with page numbers
-  - Source document information
-- **Error Handling**: Clear error messages for API issues
 
 ### Usage
 
@@ -267,17 +233,6 @@ The `Hybrid_search` parameter controls the balance between search methods:
 - **1.0**: Pure BM25 keyword search
 - **Recommended**: 0.4 (slight preference for BM25)
 
-### Supported Models
-
-| Model | Type | Parameters |
-|-------|------|------------|
-| `gpt-3.5-turbo` | Chat | max_tokens |
-| `gpt-4` | Chat | max_tokens |
-| `gpt-4-turbo` | Chat | max_tokens |
-| `o1-preview` | Reasoning | max_completion_tokens |
-| `o1-mini` | Reasoning | max_completion_tokens |
-| `o4-mini` | Latest | max_completion_tokens |
-
 
 ## 🐛 Troubleshooting
 
@@ -333,13 +288,6 @@ Enable debug logging:
 LOG_LEVEL=DEBUG python start_server.py
 ```
 
-## 🧪 Testing
-
-### Automated Tests
-```bash
-python test_api.py
-```
-
 ### Manual Testing
 ```bash
 # Health check
@@ -351,15 +299,6 @@ curl -X POST "http://localhost:8000/query" \
      -d '{"User_question": "What are building height limits?", "LLM": "o4-mini"}'
 ```
 
-
-
-
-## 🆘 Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review the logs in `fastapi_app.log`
-3. Open an issue with detailed error information
 
 ## 🔄 Updates
 
