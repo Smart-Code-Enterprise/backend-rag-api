@@ -63,7 +63,8 @@ job "smartcodes-rag-backend" {
 
       service {
         name = "smartcodes-rag-backend-dev"
-        port = "api"
+        force_pull = true
+        ports = ["api"]
         provider = "nomad"
 
         tags = [
