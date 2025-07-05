@@ -3,7 +3,7 @@
 
 # Configuration
 REGISTRY := docker-registry.imutably.com
-IMAGE_NAME := rag-backend-api
+IMAGE_NAME := smartcodes-backend
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "latest")
 BUILD_DATE := $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 GIT_COMMIT := $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")

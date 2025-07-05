@@ -101,15 +101,15 @@ The Makefile uses a comprehensive tagging strategy:
 ```bash
 # If you have a git tag v1.2.3
 make build-push
-# Creates: docker-registry.imutably.com/rag-backend-api:v1.2.3
+# Creates: docker-registry.imutably.com/smartcodes-backend:v1.2.3
 
 # Latest build
 make build-push-latest
-# Creates: docker-registry.imutably.com/rag-backend-api:latest
+# Creates: docker-registry.imutably.com/smartcodes-backend:latest
 
 # Commit-based build
 make build-push-commit
-# Creates: docker-registry.imutably.com/rag-backend-api:a1b2c3d
+# Creates: docker-registry.imutably.com/smartcodes-backend:a1b2c3d
 ```
 
 ## Environment Variables
@@ -179,10 +179,10 @@ make deploy-production
 make info
 
 # Check Docker images
-docker images | grep rag-backend-api
+docker images | grep smartcodes-backend
 
 # Check running containers
-docker ps | grep rag-backend-api
+docker ps | grep smartcodes-backend
 ```
 
 ## CI/CD Integration
