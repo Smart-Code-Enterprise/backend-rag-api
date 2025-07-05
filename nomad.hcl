@@ -79,7 +79,7 @@ job "smartcodes-rag-backend" {
           "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.SSLHost=imutably.com",
           "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSIncludeSubdomains=true",
           "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSPreload=true",
-          "traefik.http.routers.smartcodes-rag-backend-dev.middlewares=smartcodes-rag-backend-dev@nomad"
+          "traefik.http.routers.smartcodes-rag-backend-dev.middlewares=smartcodes-rag-backend-dev@nomad-smartcodes"
         ]
       }
     }
