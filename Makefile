@@ -2,7 +2,7 @@
 # Registry: docker-registry.imutably.com
 
 # Configuration
-REGISTRY := docker-registry.imutably.com
+REGISTRY := docker-registry.imutably.com/v2
 IMAGE_NAME := smartcodes-backend
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "latest")
 BUILD_DATE := $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
