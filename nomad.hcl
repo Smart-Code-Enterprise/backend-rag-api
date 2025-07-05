@@ -26,7 +26,6 @@ job "smartcodes-rag-backend" {
       config {
         image = "docker-registry.imutably.com/v2/smartcodes-rag-backend:latest"
         ports = ["api"]
-        force_pull = true
 
         mount {
           type   = "bind"
