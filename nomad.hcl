@@ -27,23 +27,6 @@ job "smartcodes-rag-backend" {
         image = "docker-registry.imutably.com/v2/smartcodes-backend:latest"
         ports = ["api"]
 
-        tags = [
-          "traefik.enable=true",
-          "traefik.http.routers.smartcodes-rag-backend-dev.rule=Host(`smartcodes-dev.imutably.com`)",
-          "traefik.http.routers.smartcodes-rag-backend-dev.tls=true",
-          "traefik.http.routers.smartcodes-rag-backend-dev.entrypoints=web,websecure",
-          "traefik.http.routers.smartcodes-rag-backend-dev.tls.certresolver=mytlschallenge",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.SSLRedirect=true",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSSeconds=315360000",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.browserXSSFilter=true",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.contentTypeNosniff=true",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.forceSTSHeader=true",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.SSLHost=imutably.com",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSIncludeSubdomains=true",
-          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSPreload=true",
-          "traefik.http.routers.smartcodes-rag-backend-dev.middlewares=smartcodes-rag-backend-dev@nomad"
-        ]
-
         mount {
           type   = "bind"
           target = "/app/logs"
@@ -82,6 +65,23 @@ job "smartcodes-rag-backend" {
         name = "smartcodes-rag-backend-dev"
         provider = "nomad"
         port = "api"
+
+        tags = [
+          "traefik.enable=true",
+          "traefik.http.routers.smartcodes-rag-backend-dev.rule=Host(`smartcodes-dev.imutably.com`)",
+          "traefik.http.routers.smartcodes-rag-backend-dev.tls=true",
+          "traefik.http.routers.smartcodes-rag-backend-dev.entrypoints=web,websecure",
+          "traefik.http.routers.smartcodes-rag-backend-dev.tls.certresolver=mytlschallenge",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.SSLRedirect=true",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSSeconds=315360000",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.browserXSSFilter=true",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.contentTypeNosniff=true",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.forceSTSHeader=true",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.SSLHost=imutably.com",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSIncludeSubdomains=true",
+          "traefik.http.middlewares.smartcodes-rag-backend-dev.headers.STSPreload=true",
+          "traefik.http.routers.smartcodes-rag-backend-dev.middlewares=smartcodes-rag-backend-dev@nomad"
+        ]
       }
     }
   }
