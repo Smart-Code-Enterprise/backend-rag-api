@@ -94,7 +94,7 @@ run: ## Run the container locally
 
 .PHONY: run-latest
 run-latest: ## Run the latest container locally
-	docker run -p 8000:8000 \
+	docker run -p 18000:8000 \
 		-e OPENAI_API_KEY=$${OPENAI_API_KEY} \
 		-e HOST=0.0.0.0 \
 		-e PORT=8000 \
