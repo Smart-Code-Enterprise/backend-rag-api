@@ -16,7 +16,7 @@ job "smartcodes-rag-backend" {
     network {
       port "api" {
         to = 5000
-        static = 18000
+        static = 18001
       }
     }
 
