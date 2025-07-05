@@ -26,7 +26,6 @@ job "smartcodes-rag-backend" {
       config {
         image = "docker-registry.imutably.com/v2/firecrawl-api:latest"
         command = "/bin/sh"
-        args = ["-c", "pnpm run start:production" ]
         ports = ["api"]
 
         mount {
