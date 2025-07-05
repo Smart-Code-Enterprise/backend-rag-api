@@ -24,8 +24,9 @@ job "smartcodes-rag-backend" {
       driver = "docker"
 
       config {
-        image = "docker-registry.imutably.com/v2/firecrawl-api:latest"
+        image = "docker-registry.imutably.com/v2/smartcodes-rag-backend:latest"
         ports = ["api"]
+        force_pull = true
 
         mount {
           type   = "bind"
@@ -63,8 +64,6 @@ job "smartcodes-rag-backend" {
 
       service {
         name = "smartcodes-rag-backend-dev"
-        force_pull = true
-        ports = ["api"]
         provider = "nomad"
 
         tags = [
