@@ -15,7 +15,7 @@ job "smartcodes-rag-backend" {
 
     network {
       port "api" {
-        to = 8000
+        to = 5000
         static = 18000
       }
     }
@@ -55,12 +55,12 @@ job "smartcodes-rag-backend" {
         LOG_LEVEL = "INFO"
         OPENAI_API_KEY = "sk-proj-1234567890"
         HOST = "0.0.0.0"
-        PORT = "8000"
+        PORT = "5000"
       }
 
       resources {
-        cpu    = 1000
-        memory = 2048
+        cpu    = 500
+        memory = 1024
       }
 
       service {
