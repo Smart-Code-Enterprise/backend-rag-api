@@ -25,7 +25,6 @@ job "smartcodes-rag-backend" {
 
       config {
         image = "docker-registry.imutably.com/v2/firecrawl-api:latest"
-        command = "/bin/sh"
         ports = ["api"]
 
         mount {
