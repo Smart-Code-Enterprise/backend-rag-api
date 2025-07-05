@@ -23,21 +23,21 @@ job "smartcodes-rag-backend" {
     mount {
       type   = "bind"
       target = "/app/logs"
-      source = "${meta.home_path}/workspace/smartcodes/backend-rags/logs"
+      source = "${meta.home_path}/workspace/smartcodes/backend-rag-api/logs"
       readonly = false
     }
 
     mount {
       type   = "bind"
       target = "/app/chroma_db_claude_NBC_2020"
-      source = "${meta.home_path}/workspace/smartcodes/backend-rags/chroma_db_claude_NBC_2020"
+      source = "${meta.home_path}/workspace/smartcodes/backend-rag-api/chroma_db_claude_NBC_2020"
       readonly = false
     }
 
     mount {
       type   = "bind"
       target = "/app/data"
-      source = "${meta.home_path}/workspace/smartcodes/backend-rags/data"
+      source = "${meta.home_path}/workspace/smartcodes/backend-rag-api/data"
       readonly = false
     }
 
