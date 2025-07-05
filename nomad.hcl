@@ -24,7 +24,7 @@ job "smartcodes-rag-backend" {
       driver = "docker"
 
       config {
-        image = "docker-registry.imutably.com/v2/smartcodes-rag-backend:latest"
+        image = "docker-registry.imutably.com/v2/smartcodes-backend:latest"
         ports = ["api"]
 
         mount {
