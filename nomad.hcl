@@ -20,6 +20,27 @@ job "smartcodes-rag-backend" {
       }
     }
 
+    mount {
+      type   = "bind"
+      target = "/app/logs"
+      source = "${meta.home_path}/workspace/smartcodes/backend-rags/logs"
+      readonly = false
+    }
+
+    mount {
+      type   = "bind"
+      target = "/app/chroma_db_claude_NBC_2020"
+      source = "${meta.home_path}/workspace/smartcodes/backend-rags/chroma_db_claude_NBC_2020"
+      readonly = false
+    }
+
+    mount {
+      type   = "bind"
+      target = "/app/data"
+      source = "${meta.home_path}/workspace/smartcodes/backend-rags/data"
+      readonly = false
+    }
+
     task "smartcodes-rag-backend-dev" {
       driver = "docker"
 
@@ -31,6 +52,10 @@ job "smartcodes-rag-backend" {
       }
 
       env {
+        LOG_LEVEL = "INFO"
+        OPENAI_API_KEY = "sk-proj-1234567890"
+        HOST = "0.0.0.0"
+        PORT = "8000"
       }
 
       resources {
