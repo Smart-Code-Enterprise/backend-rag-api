@@ -2,6 +2,11 @@ import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 import sys
+import torch
+
+# Force CPU usage for all torch operations
+torch.set_default_device('cpu')
+torch.set_num_threads(1)  # Optimize for CPU usage
 
 # Try to use pysqlite3 if available, otherwise fall back to sqlite3
 try:
@@ -17,7 +22,11 @@ from langchain_chroma import Chroma
 class DocumentDatabase:
     def __init__(self, persist_directory="./chroma_db_claude"):
         self.persist_directory = persist_directory
-        self.embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+        # Force CPU-only embeddings with explicit device configuration
+        self.embedding_function = SentenceTransformerEmbeddings(
+            model_name="all-MiniLM-L6-v2",
+            model_kwargs={'device': 'cpu'}
+        )
         self.db_path = os.path.join(self.persist_directory, "chroma_db_claude")
         self.pages = []
         

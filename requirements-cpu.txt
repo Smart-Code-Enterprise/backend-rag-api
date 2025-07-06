@@ -1,0 +1,21 @@
+# CPU-only requirements for RAG Backend API
+# Install PyTorch CPU versions first:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+streamlit>=1.35.0
+python-dotenv>=1.0.1
+openai>=1.0.0
+chromadb>=0.5.0
+langchain-chroma>=0.1.1
+chainlit
+rank-bm25
+langchain-community
+sentence-transformers
+langchain-core
+python-magic
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+
+# Note: PyTorch packages (torch, torchvision, torchaudio) should be installed separately
+# with CPU-only versions using the command above

@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """
-Database creation script for RAG Backend API
+Database creation script for RAG Backend API (CPU-only version)
 Creates ChromaDB vector database from JSON document data if it doesn't exist.
 """
 import os
 import json
 import logging
 from pathlib import Path
+import torch
+
+# Force CPU usage for all torch operations
+torch.set_default_device('cpu')
+torch.set_num_threads(1)  # Optimize for CPU usage
+
 from langchain_core.documents.base import Document
 from database import DocumentDatabase
 

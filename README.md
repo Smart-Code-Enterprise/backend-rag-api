@@ -1,38 +1,41 @@
-# RAG Backend API
+# RAG Backend API (CPU-Only Version)
 
-A comprehensive FastAPI-based backend service for Retrieval-Augmented Generation (RAG) queries against building code documents. This API provides intelligent document search and answer generation using hybrid retrieval (BM25 + vector search) with optional re-ranking, specifically designed for Ontario Building Code (OBC).
+A comprehensive FastAPI-based backend service for Retrieval-Augmented Generation (RAG) queries against building code documents. This CPU-optimized version provides intelligent document search and answer generation using hybrid retrieval (BM25 + vector search) with optional re-ranking, specifically designed for Ontario Building Code (OBC).
 
 ## 🚀 Features
 
 - **🔍 Hybrid Document Retrieval**: Combines BM25 (keyword-based) and ChromaDB vector similarity search
-- **🎯 Smart Re-ranking**: Uses CrossEncoder (mixedbread-ai/mxbai-rerank-base-v1) for improved document relevance
+- **🎯 Smart Re-ranking**: Uses CrossEncoder (mixedbread-ai/mxbai-rerank-base-v1) optimized for CPU
 - **🏗️ Building Code Expertise**: Specialized for Ontario Building Code (OBC 2014)
+- **⚡ CPU-Optimized**: Configured for efficient CPU-only operation without GPU dependencies
 - **📊 Comprehensive Logging**: Detailed logging with file and console output for debugging and monitoring
 - **🔗 RESTful API**: Clean, documented API endpoints with automatic validation
 - **⚡ Real-time Processing**: Fast response times with efficient caching and resource management
-- **🐳 Docker Support**: Full containerization with Docker and Docker Compose
+- **🐳 Docker Support**: Full containerization with Docker and Docker Compose (CPU-only)
 - **🧪 Automated Testing**: Built-in test suite for API validation
 - **🔧 Environment Configuration**: Flexible configuration through environment variables
 - **🏥 Health Monitoring**: Comprehensive health checks and resource status reporting
 
 ## 📋 Requirements
 
-- **Python**: 3.11+)
-- **Memory**: 8GB+ RAM (for model loading and processing)
-- **GPU**: If want to use rerank model for high accuracy search 
+- **Python**: 3.11+
+- **Memory**: 4GB+ RAM (optimized for CPU-only operation)
+- **CPU**: Multi-core CPU recommended for better performance
 - **API Key**: OpenAI API key with sufficient credits
+- **Storage**: 2GB+ free space for models and database
 
 ## 📁 Project Structure
 
 ```
 backend-rag-api/
-├── fastapi_app.py          # Main FastAPI application
+├── fastapi_app.py          # Main FastAPI application (CPU-optimized)
 ├── start_server.py         # Server startup script
-├── create_database.py      # Database creation script
-├── database.py            # Database management
+├── create_database.py      # Database creation script (CPU-optimized)
+├── database.py            # Database management (CPU-optimized)
 ├── utils.py               # Utility functions
-├── requirements.txt       # Python dependencies
-├── Dockerfile            # Docker configuration
+├── requirements.txt       # Python dependencies (includes PyTorch)
+├── requirements-cpu.txt   # CPU-only dependencies (recommended)
+├── Dockerfile            # Docker configuration (CPU-only)
 ├── docker-compose.yml    # Docker Compose setup
 ├── .env.example          # Environment variables template
 ├── README.md             # This file
@@ -64,12 +67,22 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+### 3. Install Dependencies (CPU-Only)
 
+For CPU-only operation, install PyTorch CPU versions first, then other dependencies:
+
+```bash
+# Install CPU-only PyTorch
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+# Install other dependencies
+pip install -r requirements-cpu.txt
+```
+
+**Alternative**: Use the original requirements.txt (will install default PyTorch which may include CUDA support):
 ```bash
 pip install -r requirements.txt
 ```
-
 
 #### Environment Configuration
 
@@ -268,14 +281,23 @@ python create_database.py
 #### 5. "ModuleNotFoundError"
 **Solution**: Install missing dependencies:
 ```bash
+# For CPU-only installation
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements-cpu.txt
+
+# Or use original requirements
 pip install -r requirements.txt
 ```
 
-#### 6. Out of Memory Errors
+#### 6. Performance Issues (CPU-only)
 **Solutions**:
-- Reduce batch size in retrieval
-- Use CPU instead of GPU
-- Close other applications
+- Ensure adequate RAM (4GB+ recommended)
+- Close unnecessary applications
+- Consider disabling re-ranking for faster responses
+- Use fewer documents in retrieval (adjust k parameter)
+
+#### 7. PyTorch CPU Warnings
+**Note**: You may see warnings about CUDA not being available. This is expected in CPU-only mode and can be safely ignored.
 
 ### Logs and Debugging
 

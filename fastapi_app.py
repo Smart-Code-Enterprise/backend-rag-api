@@ -6,6 +6,11 @@ from typing import List, Optional
 from dotenv import load_dotenv
 from openai import OpenAI
 import json
+import torch
+
+# Force CPU usage for all torch operations
+torch.set_default_device('cpu')
+torch.set_num_threads(1)  # Optimize for CPU usage
 
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
@@ -64,11 +69,12 @@ class QueryResponse(BaseModel):
     book_name: str = "OBC2014"
 
 def load_model():
-    """Load the CrossEncoder model for re-ranking"""
+    """Load the CrossEncoder model for re-ranking (CPU-only)"""
     try:
-        logger.info("Loading CrossEncoder model...")
-        model = CrossEncoder("mixedbread-ai/mxbai-rerank-base-v1")
-        logger.info("CrossEncoder model loaded successfully")
+        logger.info("Loading CrossEncoder model for CPU-only operation...")
+        # Force CPU usage for the CrossEncoder model
+        model = CrossEncoder("mixedbread-ai/mxbai-rerank-base-v1", device='cpu')
+        logger.info("CrossEncoder model loaded successfully on CPU")
         return model
     except Exception as e:
         logger.error(f"Failed to load CrossEncoder model: {e}")
