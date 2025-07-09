@@ -8,11 +8,11 @@
 
 
 
-# Database files
-chroma_db_claude_NBC_2020/
-*.sqlite3
-*.db
-*.sqlite
+# # Database files
+# chroma_db_claude_NBC_2020/
+# *.sqlite3
+# *.db
+# *.sqlite
 
 # Document files (PDFs and large data files)
 data/*.pdf

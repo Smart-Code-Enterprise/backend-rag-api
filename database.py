@@ -6,7 +6,6 @@ import torch
 
 # Force CPU usage for all torch operations
 torch.set_default_device('cpu')
-torch.set_num_threads(1)  # Optimize for CPU usage
 
 # Try to use pysqlite3 if available, otherwise fall back to sqlite3
 try:
@@ -30,10 +29,7 @@ class DocumentDatabase:
         self.db_path = os.path.join(self.persist_directory, "chroma_db_claude")
         self.pages = []
         
-        # TODO: Convert to in-memory database for production deployment
-        # For production, consider using: 
-        # self.db = Chroma(embedding_function=self.embedding_function)  # In-memory only
-        # Current implementation uses persistent storage (chroma_db_claude_NBC_2020/ is gitignored)
+        # Initialize the database
         self.db = Chroma(persist_directory=self.persist_directory, embedding_function=self.embedding_function)
     def add_document(self,Document):
         self.db.add_documents(Document)
