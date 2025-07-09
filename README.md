@@ -246,6 +246,21 @@ The `Hybrid_search` parameter controls the balance between search methods:
 - **1.0**: Pure BM25 keyword search
 - **Recommended**: 0.4 (slight preference for BM25)
 
+### Database Deployment Options
+
+#### Current Implementation (Persistent Storage)
+- Uses ChromaDB with persistent SQLite storage
+- Database files stored in `chroma_db_claude_NBC_2020/` (gitignored)
+- Requires initial database creation via `python create_database.py`
+- Suitable for development and server deployments with persistent storage
+
+#### In-Memory Alternative (For Cloud/Serverless)
+For cloud deployments without persistent storage:
+1. Modify `database.py` to use: `Chroma(embedding_function=self.embedding_function)`
+2. Load documents dynamically from JSON on startup
+3. Trade-offs: Faster startup, no disk requirements, data recreation on restart
+4. Ideal for containerized/serverless environments
+
 
 ## 🐛 Troubleshooting
 

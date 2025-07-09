@@ -30,7 +30,10 @@ class DocumentDatabase:
         self.db_path = os.path.join(self.persist_directory, "chroma_db_claude")
         self.pages = []
         
-        # Initialize the database
+        # TODO: Convert to in-memory database for production deployment
+        # For production, consider using: 
+        # self.db = Chroma(embedding_function=self.embedding_function)  # In-memory only
+        # Current implementation uses persistent storage (chroma_db_claude_NBC_2020/ is gitignored)
         self.db = Chroma(persist_directory=self.persist_directory, embedding_function=self.embedding_function)
     def add_document(self,Document):
         self.db.add_documents(Document)
