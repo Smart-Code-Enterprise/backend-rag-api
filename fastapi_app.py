@@ -81,20 +81,7 @@ def load_model():
         raise
 
 def load_database():
-    """Load the document database
-    
-    NOTE: Database Configuration Options
-    - Current: Uses persistent ChromaDB storage (chroma_db_claude_NBC_2020/)
-    - Alternative: In-memory database for cloud deployment
-    
-    For in-memory deployment (no persistence):
-    1. Modify DocumentDatabase.__init__() to not use persist_directory
-    2. Pre-load documents on startup or dynamically load from JSON
-    3. Trade-off: Faster startup, no disk storage, data recreation on restart
-    
-    The chroma_db_claude_NBC_2020/ directory is gitignored to avoid
-    committing large database files to version control.
-    """
+    """Load the document database"""
     try:
         logger.info("Loading document database...")
         db_path = "./chroma_db_claude_NBC_2020"
