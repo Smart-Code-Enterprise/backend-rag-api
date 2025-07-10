@@ -106,7 +106,6 @@ Thumbs.db
 
 # Model files (if downloaded locally)
 models/
-*.bin
 *.safetensors
 
 # Large data files
