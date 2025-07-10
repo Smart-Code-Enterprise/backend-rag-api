@@ -12,7 +12,7 @@ load_dotenv()
 if __name__ == "__main__":
     # Get configuration from environment variables with defaults
     host = os.getenv("HOST", "0.0.0.0")
-    port = int(os.getenv("PORT", 8000))
+    port = int(os.getenv("PORT", 8888))
     log_level = os.getenv("LOG_LEVEL", "info").lower()
     
     print(f"Starting RAG Backend API...")

@@ -7,6 +7,10 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import json
 import torch
+from pathlib import Path
+
+
+base_dir = Path(__file__).resolve().parent
 
 # Force CPU usage for all torch operations
 torch.set_default_device('cpu')
@@ -84,7 +88,7 @@ def load_database():
     """Load the document database"""
     try:
         logger.info("Loading document database...")
-        db_path = "./chroma_db_claude_NBC_2020"
+        db_path = base_dir / "chroma_db_claude_NBC_2020"
         
         # Check if database exists
         if not os.path.exists(db_path) or not os.path.exists(os.path.join(db_path, "chroma.sqlite3")):
@@ -92,7 +96,7 @@ def load_database():
             logger.error("Please run 'python create_database.py' to create the database first")
             raise FileNotFoundError(f"Database not found at {db_path}. Run 'python create_database.py' to create it.")
         
-        database = DocumentDatabase(persist_directory=db_path)
+        database = DocumentDatabase(persist_directory=str(db_path))
         db = database.return_db()
         logger.info("Document database loaded successfully")
         return db
